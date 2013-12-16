@@ -1,0 +1,12 @@
+Host web
+    Compression yes
+    HostName home.phillipwills.com
+    Port 23
+    User philwills
+
+Host ec2
+    Compression yes
+    HostName 54.201.166.60
+    User ec2-user
+    IdentityFile ~/.ssh/philwills-keypair-oregon.pem
+
