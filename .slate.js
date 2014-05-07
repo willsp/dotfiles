@@ -20,14 +20,14 @@ var topRight = S.op("move", {
 });
 var bottomLeft = S.op("move", {
     "x": "0-screenSizeX",
-    "y": "screenOriginY+525",
+    "y": "screenOriginY+500",
     "width": 980,
     "height": 520,
     "screen": monLap
 });
 var bottomRight = S.op("move", {
     "x": "975-screenSizeX",
-    "y": "screenOriginY+645",
+    "y": "screenOriginY+620",
     "width": 700,
     "height": 400,
     "screen": monLap
