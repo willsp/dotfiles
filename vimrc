@@ -1,5 +1,13 @@
+" https://github.com/willsp/dotfiles/blob/master/.vimrc
+"
+" ln vimrc ~/.vimrc
+
 set nocompatible               " be iMproved
 filetype off                   " required!
+
+set rtp+=/Users/willsp/usefulgits/powerline/powerline/bindings/vim
+set laststatus=2
+set t_Co=256
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -11,6 +19,8 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
+Bundle 'majutsushi/tagbar'
+Bundle 'sjl/gundo.vim'
 Bundle 'willsp/vim-colors-solarized'
 Bundle 'pangloss/vim-javascript'
 Bundle 'lepture/vim-velocity'
@@ -18,10 +28,24 @@ Bundle 'lunaru/vim-less'
 Bundle 'venusjs/venus.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'wavded/vim-stylus'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'othree/html5.vim'
+Bundle 'juvenn/mustache.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'kien/ctrlp.vim'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'junegunn/goyo.vim'
+Bundle 'vim-pandoc/vim-pandoc'
+Bundle 'stephenmckinney/vim-solarized-powerline'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'tomtom/tcomment_vim'
 " vim-scripts repos
 Bundle 'bufexplorer.zip'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git' Problems with new version...
+" trying silver searcher with ctrlp instead...
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 
@@ -38,23 +62,45 @@ filetype plugin indent on     " required!
 "
 " END VUNDLE
 
-" Use , instead of \
-let mapleader = ","
+let mapleader = " "
+
+" Ctrl-P options
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = 'node_modules'
+
+"let g:ctrlp_working_path_mode = 'ra' " Nearest ancestor with .git, .hg... then current file or current working dir
+let g:ctrlp_working_path_mode = 'a' " It seems the r is having trouble with tetra... go figure. I'll figure it out... eventually...
+
+map <Leader>t :CtrlP<cr>
+map <Leader>w :Goyo<cr>
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+nnoremap \ :Ag<SPACE>
 
 " Sane tabs
 set tabstop=4
 set shiftwidth=4
-set expandtab
 set smartindent
-
-" Colors
-syntax enable
-if has('gui_running')
-	set background=light
-else
-	set background=dark
-endif
-colorscheme solarized
+set expandtab
 
 " Line numbers
 set relativenumber
@@ -124,6 +170,10 @@ set mouse=a
 set scrolloff=3
 set title
 set visualbell
+set noerrorbells
+set ruler
+set viminfo=%,'50,\"100,/50,:100,h,n~/.viminfo
+set spell spelllang=en_us
 
 " Tab Autocomplete... FTW!!!
 function! InsertTabWrapper()
@@ -138,12 +188,6 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-p>
 
-" Code folding
-set foldmethod=syntax
-set foldlevelstart=1
-
-let javaScript_fold=1
-
 " Perforce...
 nnoremap @p4e :!p4 edit '%'<cr>
 nnoremap @p4r :!p4 revert '%'<cr>
@@ -157,3 +201,17 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
 	\ 'active_filetypes': [],
 	\ 'passive_filetypes': ['html'] }
+
+" Tagbar / Gundo
+map <Leader>c :TagbarToggle<CR>
+map <Leader>u :GundoToggle<CR>
+
+" Colors
+syntax enable
+if has('gui_running')
+	set background=light
+else
+	set background=dark
+endif
+colorscheme solarized
+

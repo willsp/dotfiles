@@ -5,7 +5,9 @@
     ],
     "browser"       : true,
     "bitwise"       : true,     // prohibit the use of bitwise operations (slow and '&' is usually supposed to be '&&')
+    "camelcase"     : false,    // don't require camelCase...
     "curly"         : true,     // require {} for all blocks/scopes
+    "indent"        : 4,        // default indent for cobalt... guess I'll use the same...
     "latedef"       : true,     // prohibit variable use before definition ("hoisting")
     "noempty"       : true,     // prohibit empty blocks
     "trailing"      : true,     // no trailing whitespace is allowed

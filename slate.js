@@ -82,10 +82,10 @@ var grid = S.op("grid", {
 });
 */
 
-S.bnd("j:ctrl", S.op("relaunch"));
+S.bnd("s:ctrl", S.op("relaunch"));
 
-S.bnd("l:ctrl", S.op("layout", { "name": deskLayout }));
-S.bnd("k:ctrl", hideExtras);
+S.bnd("m:ctrl", S.op("layout", { "name": deskLayout }));
+S.bnd("n:ctrl", hideExtras);
 S.def([monLap,monDesk], deskLayout);
 S.def(1, singleLayout);
 

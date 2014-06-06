@@ -1,4 +1,3 @@
-source exports.zsh
 
 # Aliases
 # Websites
@@ -20,12 +19,12 @@ alias wll='cd $TETRA_HOME/weblogic/logs'
 alias wl='cd $TETRA_HOME/weblogic'
 
 #Custom
-alias tetra='cd ~/cblt/Core/Websites/Tetra/trunk'
-alias webapp='cd ~/cblt/Core/Websites/Tetra/trunk/modules/websites-webapp/src/main/webapp'
-alias wsm='cd ~/cblt/Core/Websites/Tetra/trunk/modules/wsm-webapp/src/main/webapp'
-alias widgets='cd ~/cblt/Core/Websites/Tetra/trunk/modules/widget-webapp/src/main/webapp/CBLT_widgets'
-alias csscompile='ant -f ~/cblt/Core/Websites/Tetra/trunk/build/websitesEar.xml css.compile'
-alias cssclean='ant -f ~/cblt/Core/Websites/Tetra/trunk/build/websitesEar.xml css.clean'
+alias tetra='cd $TETRA_HOME'
+alias webapp='cd $TETRA_HOME/modules/websites-webapp/src/main/webapp'
+alias wsm='cd $TETRA_HOME/modules/wsm-webapp/src/main/webapp'
+alias widgets='cd $TETRA_HOME/modules/widget-webapp/src/main/webapp/CBLT_widgets'
+alias csscompile='ant -f $TETRA_HOME/build/websitesEar.xml css.compile'
+alias cssclean='ant -f $TETRA_HOME/build/websitesEar.xml css.clean'
 alias mvnsi='mvn mavenus:frameworkextractor -DenableMavenus'
 alias mvnst=runJSTest
 alias c=chrome-cli
@@ -77,5 +76,6 @@ unsetopt correct
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
 
 . /Users/willsp/usefulgits/powerline/powerline/bindings/zsh/powerline.zsh
