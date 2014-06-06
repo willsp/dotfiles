@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dotnames=( ant.properties jshintrc slate.js tmux.conf vimrc zshrc )
+dotnames=( ant.properties jshintrc slate.js tmux.conf vimrc zshenv zshrc )
 
 for name in ${dotnames[@]}
 do

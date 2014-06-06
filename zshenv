@@ -9,7 +9,6 @@ export ANT_OPTS="-Dfile.encoding=UTF-8 -Xmx6g -XX:MaxPermSize=1g"
 export JAVA_OPTS="-Djava.awt.headless=true -Dorg.apache.el.parser.SKIP_IDENTIFIER_CHECK=true -Xms1g -Xmx6g -XX:NewSize=128m -XX:MaxNewSize=512m -XX:PermSize=128m -XX:MaxPermSize=768m -Drebel.check_class_hash=true -XX:+UseParallelGC"
 export MAVEN_OPTS="-Dorg.apache.el.parser.SKIP_IDENTIFIER_CHECK=true -Xms1g -Xmx6g -XX:NewSize=128m -XX:MaxNewSize=512m -XX:PermSize=128m -XX:MaxPermSize=768m -Dtest.vm.args='-XX:MaxPermSize=768m -Xmx6g'"
 
-export TETRA_HOME=/Users/willsp/cblt/Core/Websites/Tetra/trunk
+export TETRA_HOME=/var/cblt/Core/Websites/Tetra/trunk
 export TETRA_CATALINA_BASE=$TETRA_HOME/modules/sandbox-env-tomcat/target/tcserver/websites
-
 
