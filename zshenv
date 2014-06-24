@@ -12,3 +12,5 @@ export MAVEN_OPTS="-Dorg.apache.el.parser.SKIP_IDENTIFIER_CHECK=true -Xms1g -Xmx
 export TETRA_HOME=/srv/cblt/Core/Websites/Tetra/trunk
 export TETRA_CATALINA_BASE=$TETRA_HOME/modules/sandbox-env-tomcat/target/tcserver/websites
 
+export CLOJURESCRIPT_HOME=/Users/willsp/usefulgits/clojurescript
+

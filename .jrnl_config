@@ -1,0 +1,13 @@
+{
+  "highlight": true, 
+  "default_hour": 9, 
+  "linewrap": 79, 
+  "editor": "vim", 
+  "journals": {
+    "default": "/Users/willsp/Dropbox/notes/journal.txt"
+  }, 
+  "timeformat": "%Y-%m-%d %H:%M", 
+  "default_minute": 0, 
+  "tagsymbols": "#", 
+  "encrypt": true
+}
