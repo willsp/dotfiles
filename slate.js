@@ -43,6 +43,10 @@ var showExtras = S.op("show", {
 });
 var deskLayout = S.lay("desk", {
     "_before_": { "operations": showExtras },
+    "Microsoft Lync": {
+        "operations": [topLeft],
+        "main-first": true
+    },
     "Microsoft Communicator": {
         "operations": [topLeft],
         "main-first": true

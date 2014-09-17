@@ -1,11 +1,12 @@
-" https://github.com/willsp/dotfiles/blob/master/.vimrc
+" httpolors()
+ 
 "
 " ln vimrc ~/.vimrc
 
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=/Users/willsp/usefulgits/powerline/powerline/bindings/vim
+"set rtp+=/Users/willsp/usefulgits/powerline/powerline/bindings/vim
 set laststatus=2
 set t_Co=256
 
@@ -68,7 +69,6 @@ let mapleader = " "
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = 'node_modules'
 
 "let g:ctrlp_working_path_mode = 'ra' " Nearest ancestor with .git, .hg... then current file or current working dir
 let g:ctrlp_working_path_mode = 'a' " It seems the r is having trouble with tetra... go figure. I'll figure it out... eventually...
@@ -208,10 +208,23 @@ map <Leader>u :GundoToggle<CR>
 
 " Colors
 syntax enable
-if has('gui_running')
-	set background=light
-else
-	set background=dark
-endif
+set background=dark
+
+let g:solarized_termcolors=16
 colorscheme solarized
+
+" Setup toggle for remoting where others don't have solarized on their term
+function! ToggleColors()
+    if g:solarized_termcolors == 16
+        let g:solarized_termcolors=256
+        set background=dark
+        colorscheme solarized
+    else
+        let g:solarized_termcolors=16
+        set background=dark
+        colorscheme solarized
+    endif
+endfunction
+
+nnoremap <Leader>x :call ToggleColors()<cr>
 
