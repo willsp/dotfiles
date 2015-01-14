@@ -10,6 +10,7 @@
     "indent"        : 4,        // default indent for cobalt... guess I'll use the same...
     "latedef"       : true,     // prohibit variable use before definition ("hoisting")
     "noempty"       : true,     // prohibit empty blocks
+    "quotmark"      : true,     // I want single for js, json requires double...
     "trailing"      : true,     // no trailing whitespace is allowed
     "undef"         : true     // prevent the use of undeclared variables
 }

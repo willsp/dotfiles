@@ -28,7 +28,7 @@ alias cssclean='ant -f $TETRA_HOME/build/websitesEar.xml css.clean'
 alias mvnsi='mvn mavenus:frameworkextractor -DenableMavenus'
 alias mvnst=runJSTest
 alias c=chrome-cli
-alias t='todo.sh -d $HOME/Dropbox/todo/.config'
+alias td='todo.sh -d $HOME/Dropbox/todo/.config'
 
 #Scripts
 m() {
@@ -84,9 +84,6 @@ unsetopt correct
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
-
-#. /Users/willsp/usefulgits/powerline/powerline/bindings/zsh/powerline.zsh
 
 # Prompt
 function precmd {

@@ -10,56 +10,58 @@ filetype off                   " required!
 set laststatus=2
 set t_Co=256
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles here:
+" My Plugins here:
 "
 " original repos on github
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
-Bundle 'willsp/vim-colors-solarized'
-Bundle 'pangloss/vim-javascript'
-Bundle 'lepture/vim-velocity'
-Bundle 'lunaru/vim-less'
-Bundle 'venusjs/venus.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'wavded/vim-stylus'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'othree/html5.vim'
-Bundle 'juvenn/mustache.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'kien/ctrlp.vim'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'junegunn/goyo.vim'
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'stephenmckinney/vim-solarized-powerline'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'tomtom/tcomment_vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'avakarev/vim-watchdog'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'junegunn/goyo.vim'
+Plugin 'juvenn/mustache.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'lepture/vim-velocity'
+Plugin 'lunaru/vim-less'
+Plugin 'majutsushi/tagbar'
+Plugin 'mattn/emmet-vim'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/syntastic'
+Plugin 'sjl/gundo.vim'
+Plugin 'stephenmckinney/vim-solarized-powerline'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-surround'
+Plugin 'venusjs/venus.vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'willsp/vim-colors-solarized'
 " vim-scripts repos
-Bundle 'bufexplorer.zip'
+"Plugin 'bufexplorer.zip'
 " non github repos
-" Bundle 'git://git.wincent.com/command-t.git' Problems with new version...
+" Plugin 'git://git.wincent.com/command-t.git' Problems with new version...
 " trying silver searcher with ctrlp instead...
 " git repos on your local machine (ie. when working on your own plugin)
-"Bundle 'file:///Users/gmarik/path/to/plugin'
+"Plugin 'file:///Users/gmarik/path/to/plugin'
+call vundle#end()
 
 filetype plugin indent on     " required!
 "
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..
 "
 " END VUNDLE
 
@@ -75,6 +77,7 @@ let g:ctrlp_working_path_mode = 'a' " It seems the r is having trouble with tetr
 
 map <Leader>t :CtrlP<cr>
 map <Leader>w :Goyo<cr>
+map <Leader>be :CtrlPBuffer<cr>
 
 " The Silver Searcher
 if executable('ag')
@@ -157,6 +160,7 @@ autocmd BufRead,BufNewFile *.json :set filetype=javascript
 autocmd BufRead,BufNewFile *.aspx :set filetype=html
 autocmd BufRead,BufNewFile *.less :set filetype=less
 autocmd BufRead,BufNewFile afiedt.buf :set filetype=sql
+autocmd BufNewFile,BufReadPost *.md :set filetype=markdown
 
 " Misc options
 set backspace=indent,eol,start
@@ -174,6 +178,7 @@ set noerrorbells
 set ruler
 set viminfo=%,'50,\"100,/50,:100,h,n~/.viminfo
 set spell spelllang=en_us
+let g:bufExplorerShowTabBuffer=1
 
 " Tab Autocomplete... FTW!!!
 function! InsertTabWrapper()
@@ -227,4 +232,29 @@ function! ToggleColors()
 endfunction
 
 nnoremap <Leader>x :call ToggleColors()<cr>
+
+" EasyMotion Config
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+" nmap s <Plug>(easymotion-s2)
+
+" Turn on case sensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Arrow results navigation
+nmap <silent> <RIGHT>           :cnext<CR>
+nmap <silent> <RIGHT><RIGHT>    :cnfile<CR><C-G>
+nmap <silent> <LEFT>            :cprev<CR>
+nmap <silent> <LEFT><LEFT>      :cpfile<CR><C-G>
 
