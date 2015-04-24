@@ -23,12 +23,15 @@ alias tetra='cd $TETRA_HOME'
 alias webapp='cd $TETRA_HOME/modules/websites-webapp/src/main/webapp'
 alias wsm='cd $TETRA_HOME/modules/wsm-webapp/src/main/webapp'
 alias widgets='cd $TETRA_HOME/modules/widget-webapp/src/main/webapp/CBLT_widgets'
-alias csscompile='ant -f $TETRA_HOME/build/websitesEar.xml css.compile'
-alias cssclean='ant -f $TETRA_HOME/build/websitesEar.xml css.clean'
+alias css='mvn -Pcss.compile validate'
+alias cssclean='mvn -Pcss.clean validate'
 alias mvnsi='mvn mavenus:frameworkextractor -DenableMavenus'
 alias mvnst=runJSTest
 alias c=chrome-cli
 alias td='todo.sh -d $HOME/Dropbox/todo/.config'
+alias p4pen='p4 changes -u willsp -c willsp_sea-willsp-mac_cblt -s pending'
+alias p4sub='p4 changes -u willsp -c willsp_sea-willsp-mac_cblt -s submitted'
+
 
 #Scripts
 m() {

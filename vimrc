@@ -43,6 +43,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'venusjs/venus.vim'
 Plugin 'wavded/vim-stylus'
 Plugin 'willsp/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
 " vim-scripts repos
 "Plugin 'bufexplorer.zip'
 " non github repos
@@ -179,19 +180,6 @@ set ruler
 set viminfo=%,'50,\"100,/50,:100,h,n~/.viminfo
 set spell spelllang=en_us
 let g:bufExplorerShowTabBuffer=1
-
-" Tab Autocomplete... FTW!!!
-function! InsertTabWrapper()
-    let col = col(".") - 1
-    if !col || getline(".")[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-n>"
-    endif
-endfunction
-
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-p>
 
 " Perforce...
 nnoremap @p4e :!p4 edit '%'<cr>
