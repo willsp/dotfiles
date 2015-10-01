@@ -1,2 +1,22 @@
 node_modules
+tmp
+Applications*
+Library
+Movies
+Music
+Pictures
+bea
+gmock
+mockmode
+phone-music
+apps
+backup
+projects
+usefulgits
+Documents
+Downloads
+*.so
+*.swp
+*.zip
+
 

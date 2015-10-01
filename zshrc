@@ -2,7 +2,6 @@
 # Aliases
 # Websites
 tcs() {
-    devshare.sh
     ant -f $TETRA_HOME/modules/deploy.xml server.start.tomcat
 }
 
@@ -28,10 +27,10 @@ alias cssclean='mvn -Pcss.clean validate'
 alias mvnsi='mvn mavenus:frameworkextractor -DenableMavenus'
 alias mvnst=runJSTest
 alias c=chrome-cli
-alias td='todo.sh -d $HOME/Dropbox/todo/.config'
 alias p4pen='p4 changes -u willsp -c willsp_sea-willsp-mac_cblt -s pending'
 alias p4sub='p4 changes -u willsp -c willsp_sea-willsp-mac_cblt -s submitted'
-
+alias dockenv=eval "$(docker-machine env dev)"
+alias vim=nvim
 
 #Scripts
 m() {
@@ -83,8 +82,11 @@ CASE_SENSITIVE="true"
 export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Users/willsp/bin:/Users/willsp/usefulgits/v8/out/native:/Users/willsp/platform-tools:/Users/willsp/apps/instantclient_11_2
 export GEM_HOME='/usr/local/Cellar/gems/2.0'
 
-unsetopt correct
+# Use modern completion system
+autoload -Uz compinit
+compinit
 
+unsetopt correct
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
