@@ -135,25 +135,8 @@ if executable('ag')
 endif
 
 " Makers
-let g:neomake_javascript_eslint_maker = {
-    \ 'args': ['--verbose'],
-    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-    \ }
 let g:neomake_javascript_enabled_makers = ['eslint']
-
-let g:neomake_html_tidy5_maker = {
-    \ 'args': ['-e', '-q', '--gnu-emacs', 'true'],
-    \ 'errorformat': '%A%f:%l:%c: Warning: %m',
-    \ }
 let g:neomake_html_enabled_makers = ['tidy5']
-
-let g:neomake_less_lessc_maker = {
-    \ 'args': ['--lint', '--no-color'],
-    \ 'errorformat':
-        \ '%m in %f on line %l\, column %c:,' .
-        \ '%m in %f:%l:%c,' .
-        \ '%-G%.%#'
-    \ }
 let g:neomake_less_enabled_makers = ['lessc']
 
 if $TMUX != '' 
@@ -206,13 +189,12 @@ Plug 'janko-m/vim-test'
 Plug 'kien/ctrlp.vim'
 Plug 'lepture/vim-velocity'
 Plug 'mattn/emmet-vim'
-Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/gundo.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-Plug 'wesQ3/vim-windowswap'
+Plug 'Valloric/YouCompleteMe'
 Plug 'willsp/vim-colors-solarized'
 
 call plug#end()

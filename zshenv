@@ -1,6 +1,6 @@
 export JAVA_HOME=$(/usr/libexec/java_home)
 #export P4CLIENT=willsp_sea-willsp-mac_cblt
-export P4CLIENT=willsp_sea-hydra
+export P4CLIENT=willsp_sea-willsp-mac_cblt
 export P4PORT=perforce.cobaltgroup.com:1667
 export P4USER=willsp
 export P4EDITOR=/usr/local/bin/vim
@@ -12,6 +12,9 @@ export JAVA_OPTS="-Djava.awt.headless=true -Dorg.apache.el.parser.SKIP_IDENTIFIE
 
 export TETRA_HOME=/srv/cblt/Core/Websites/Tetra/trunk
 export TETRA_CATALINA_BASE=$TETRA_HOME/modules/sandbox-env-tomcat/target/tcserver/websites
+
+export HYDRA_HOME=/srv/cblt/Core/Websites/Hydra/trunk
+export HYDRA_PORT=3000
 
 export CLOJURESCRIPT_HOME=/Users/willsp/usefulgits/clojurescript
 
