@@ -15,7 +15,10 @@ export TETRA_CATALINA_BASE=$TETRA_HOME/modules/sandbox-env-tomcat/target/tcserve
 
 export HYDRA_HOME=/srv/cblt/Core/Websites/Hydra/trunk
 export HYDRA_PORT=3000
+export VENDOR_PACKAGE=$HYDRA_HOME/deployables/hydra-websites-package
+export HYDE=$HYDRA_HOME/platform
 
 export CLOJURESCRIPT_HOME=/Users/willsp/usefulgits/clojurescript
 
 export WWWROOT=/Library/WebServer/Documents
+
