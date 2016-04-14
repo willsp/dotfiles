@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/srv/cblt/Core/Websites/Hydra/trunk/products/hydra-base/base/actor/processor'
+let g:netrw_dirhist_2='/srv/cblt/Core/Websites/Hydra/trunk/products/hydra-base/themes/torn-paper'
+let g:netrw_dirhist_3='/srv/cblt/Core/Websites/Hydra/trunk/products/hydra-base/themes'
+let g:netrw_dirhist_4='/srv/cblt/Core/Websites/Hydra/trunk/products/hydra-base/test/resources'
+let g:netrw_dirhist_5='/Users/willsp/projects/blog/www'
+let g:netrw_dirhist_6='/Users/willsp/projects/blog'

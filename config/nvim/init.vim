@@ -7,7 +7,6 @@ set laststatus=2
 set ruler
 set scrolloff=3
 set title
-set viminfo=%,'50,\"100,/50,:100,h,n~/.viminfo
 
 " Spelling
 set spell spelllang=en_us
@@ -51,6 +50,10 @@ set fillchars+=fold:-
 let &showbreak = '↪ '
 set wrap
 
+" Enable persistent undo so that undo history persists across vim sessions
+set undofile
+set undodir=~/.config/nvim/undo
+
 " Visual cues when in 'list' model.
 set listchars+=eol:¬
 set listchars+=extends:❯
@@ -69,6 +72,11 @@ autocmd BufRead,BufNewFile *.aspx :set filetype=html
 autocmd BufRead,BufNewFile *.less :set filetype=less
 autocmd BufRead,BufNewFile afiedt.buf :set filetype=sql
 autocmd BufNewFile,BufReadPost *.md :set filetype=markdown
+autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT
+        \ setlocal autoindent expandtab tabstop=8 softtabstop=2 shiftwidth=2 filetype=asciidoc
+        \ textwidth=70 wrap formatoptions=tcqn
+        \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+        \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
 
 let mapleader = " "
 
@@ -136,8 +144,12 @@ endif
 
 " Makers
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_html_enabled_makers = ['tidy5']
 let g:neomake_less_enabled_makers = ['lessc']
+let g:neomake_html_tidy5_maker = {
+    \ 'args': ['-e', '-q', '--gnu-emacs', 'true'],
+    \ 'errorformat': '%A%f:%l:%c: Warning: %m',
+    \ }
+let g:neomake_html_enabled_makers = ['tidy5']
 
 if $TMUX != '' 
   " integrate movement between tmux/vim panes/windows
@@ -180,7 +192,7 @@ endif
 
 autocmd! BufWritePost * Neomake
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'avakarev/vim-watchdog'
 Plug 'benekastah/neomake'
@@ -191,7 +203,7 @@ Plug 'lepture/vim-velocity'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'sheerun/vim-polyglot'
-Plug 'sjl/gundo.vim'
+Plug 'simnalamburt/vim-mundo'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
@@ -219,3 +231,22 @@ function! ToggleColors()
     endif
 endfunction
 
+" Escape/unescape & < > HTML entities in range (default current line).
+function! HtmlEntities(line1, line2, action)
+  let search = @/
+  let range = 'silent ' . a:line1 . ',' . a:line2
+  if a:action == 0  " must convert &amp; last
+    execute range . 'sno/&lt;/</eg'
+    execute range . 'sno/&gt;/>/eg'
+    execute range . 'sno/&amp;/&/eg'
+  else              " must convert & first
+    execute range . 'sno/&/&amp;/eg'
+    execute range . 'sno/</&lt;/eg'
+    execute range . 'sno/>/&gt;/eg'
+  endif
+  nohl
+  let @/ = search
+endfunction
+command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+noremap <silent> <Leader>h :Entities 0<CR>
+noremap <silent> <Leader>H :Entities 1<CR>
