@@ -29,7 +29,7 @@ alias mvnst=runJSTest
 alias c=chrome-cli
 alias p4pen='p4 changes -u willsp -c willsp_sea-willsp-mac_cblt -s pending'
 alias p4sub='p4 changes -u willsp -c willsp_sea-willsp-mac_cblt -s submitted'
-alias dockenv=eval "$(docker-machine env dev)"
+#alias dockenv=eval "$(docker-machine env dev)"
 alias vim=nvim
 
 #Scripts

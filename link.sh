@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dotnames=( ant.properties jshintrc slate.js tmux.conf nvimrc zshenv zshrc )
+dotnames=( ant.properties jshintrc slate.js tmux.conf zshenv zshrc )
 
 for name in ${dotnames[@]}
 do
@@ -11,4 +11,11 @@ do
 
     ln ${name} ~/.${name}
 done
+
+if [ -e ~/config ]
+then
+    mv ~/config ~/config.pw
+fi
+
+ln -s $PWD/config ~/config
 
