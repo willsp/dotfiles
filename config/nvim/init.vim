@@ -74,7 +74,7 @@ autocmd BufRead,BufNewFile afiedt.buf :set filetype=sql
 autocmd BufNewFile,BufReadPost *.md :set filetype=markdown
 autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT
         \ setlocal autoindent expandtab tabstop=8 softtabstop=2 shiftwidth=2 filetype=asciidoc
-        \ textwidth=70 wrap formatoptions=tcqn
+        \ textwidth=75 wrap formatoptions=tcqn
         \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
         \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
 
@@ -83,7 +83,7 @@ let mapleader = " "
 map <Leader>t :CtrlP<cr>
 map <Leader>w :Goyo<cr>
 map <Leader>be :CtrlPBuffer<cr>
-map <Leader>u :GundoToggle<CR>
+map <Leader>u :MundoToggle<CR>
 map <Leader>n :NERDTreeToggle<CR>
 
 " Swap jump to mark keys
@@ -194,6 +194,8 @@ autocmd! BufWritePost * Neomake
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'Valloric/YouCompleteMe'
+Plug 'airblade/vim-gitgutter'
 Plug 'avakarev/vim-watchdog'
 Plug 'benekastah/neomake'
 Plug 'christoomey/vim-tmux-navigator'
@@ -206,30 +208,19 @@ Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe'
 Plug 'willsp/vim-colors-solarized'
+
 
 call plug#end()
 
 " Colors
 syntax enable
-set background=dark
+set background=light
 
-let g:solarized_termcolors=16
+let g:solarized_termcolors=256
+let g:solarized_visibility =  "low"
+let s:terminal_italic=1
 colorscheme solarized
-
-" Setup toggle for remoting where others don't have solarized on their term
-function! ToggleColors()
-    if g:solarized_termcolors == 16
-        let g:solarized_termcolors=256
-        set background=dark
-        colorscheme solarized
-    else
-        let g:solarized_termcolors=16
-        set background=dark
-        colorscheme solarized
-    endif
-endfunction
 
 " Escape/unescape & < > HTML entities in range (default current line).
 function! HtmlEntities(line1, line2, action)
@@ -248,5 +239,7 @@ function! HtmlEntities(line1, line2, action)
   let @/ = search
 endfunction
 command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+command! Colors call ToggleColors()
 noremap <silent> <Leader>h :Entities 0<CR>
 noremap <silent> <Leader>H :Entities 1<CR>
+
