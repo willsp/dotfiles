@@ -5,6 +5,7 @@ export P4PORT=perforce.cobaltgroup.com:1667
 export P4USER=willsp
 export P4EDITOR=/usr/local/bin/nvim
 export EDITOR=/usr/local/bin/nvim
+export DVTM_TERM=xterm
 export USERDNSDOMAIN=sea.ds.adp.com
 export ANT_OPTS="-Dfile.encoding=UTF-8 -Xmx3g -XX:MaxPermSize=1g -Djava.awt.headless=true"
 export JAVA_OPTS="-Djava.awt.headless=true -Dorg.apache.el.parser.SKIP_IDENTIFIER_CHECK=true -Xms1g -Xmx3g -XX:NewSize=128m -XX:MaxNewSize=512m -XX:PermSize=128m -XX:MaxPermSize=768m -Drebel.check_class_hash=true -XX:+UseParallelGC"
@@ -15,8 +16,9 @@ export TETRA_CATALINA_BASE=$TETRA_HOME/modules/sandbox-env-tomcat/target/tcserve
 
 export HYDRA_HOME=/srv/cblt/Core/Websites/Hydra/trunk
 export HYDRA_PORT=3000
-export VENDOR_PACKAGE=$HYDRA_HOME/deployables/hydra-websites-package
 export HYDE=$HYDRA_HOME/platform
+export VENDOR_PACKAGE=/Users/willsp/hydra/hydra-graph
+export HYDRA_SERVER=/Users/willsp/hydra/hydra-server
 
 export CLOJURESCRIPT_HOME=/Users/willsp/usefulgits/clojurescript
 

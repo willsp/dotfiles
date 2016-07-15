@@ -1,3 +1,17 @@
+let g:settings = get(g:, 'settings', {})
+if filereadable(expand("~/.cache/vimfiles/dein/repos/github.com/Shougo/dein.vim/README.md"))
+    let g:settings.dein_installed = 1
+else
+    if executable('git')
+        exec '!git clone https://github.com/Shougo/dein.vim '
+                    \ . '~/.cache/vimfiles/dein/repos/github.com/Shougo/dein.vim'
+        let g:settings.dein_installed = 1
+    else
+        echohl WarningMsg | echom "You need install git!" | echohl None
+    endif
+endif
+set runtimepath+=~/.cache/vimfiles/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+
 set t_Co=256
 
 set clipboard=unnamed
@@ -191,35 +205,50 @@ if $TMUX != ''
 endif
 
 autocmd! BufWritePost * Neomake
+call dein#begin(expand('~/.cache/dein'))
 
-call plug#begin('~/.config/nvim/plugged')
+call dein#add(expand('~/.cache/vimfiles/dein/repos/github.com/Shougo/dein.vim'))
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'airblade/vim-gitgutter'
-Plug 'avakarev/vim-watchdog'
-Plug 'benekastah/neomake'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'janko-m/vim-test'
-Plug 'kien/ctrlp.vim'
-Plug 'lepture/vim-velocity'
-Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'sheerun/vim-polyglot'
-Plug 'simnalamburt/vim-mundo'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-surround'
-Plug 'willsp/vim-colors-solarized'
+call dein#add('tpope/vim-fugitive')
+call dein#add('Valloric/YouCompleteMe')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('avakarev/vim-watchdog')
+call dein#add('benekastah/neomake')
+call dein#add('christoomey/vim-tmux-navigator')
+call dein#add('janko-m/vim-test')
+call dein#add('kien/ctrlp.vim')
+call dein#add('lepture/vim-velocity')
+call dein#add('mattn/emmet-vim')
+call dein#add('sheerun/vim-polyglot')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('tpope/vim-surround')
+call dein#add('willsp/vim-colors-solarized')
+call dein#add('groenewege/vim-less',                    { 'on_ft':['less']})
+call dein#add('hail2u/vim-css3-syntax',                 { 'on_ft':['css','scss','sass']})
+call dein#add('ap/vim-css-color',                       { 'on_ft':['css','scss','sass','less','styl']})
+call dein#add('othree/html5.vim',                       { 'on_ft':['html']})
+call dein#add('juvenn/mustache.vim',                    { 'on_ft':['mustache']})
+call dein#add('Valloric/MatchTagAlways',                { 'on_ft':['html' , 'xhtml' , 'xml' , 'jinja']})
+call dein#add('pangloss/vim-javascript',                { 'on_ft':['javascript']})
+call dein#add('mmalecki/vim-node.js',                   { 'on_ft':['javascript']})
+call dein#add('leshill/vim-json',                       { 'on_ft':['javascript','json']})
+call dein#add('othree/javascript-libraries-syntax.vim', { 'on_ft':['javascript','coffee','ls','typescript']})
+call dein#add('itchyny/calendar.vim',                   { 'on_cmd' : 'Calendar'})
+call dein#add('junegunn/goyo.vim',                      { 'on_cmd' : 'Goyo'})
+call dein#add('scrooloose/nerdtree',                    { 'on_cmd' : 'NERDTreeToggle'})
+call dein#add('simnalamburt/vim-mundo',                 { 'on_cmd' : 'MundoToggle'})
+call dein#add('junegunn/gv.vim',                        { 'on_cmd' : 'GV'})
+call dein#add('lambdalisue/vim-gita',                   {'on_cmd': 'Gita'})
 
-
-call plug#end()
+call dein#end()
 
 " Colors
 syntax enable
-set background=light
+set background=dark
 
-let g:solarized_termcolors=256
-let g:solarized_visibility =  "low"
-let s:terminal_italic=1
+" let g:solarized_termcolors=256
+" let g:solarized_visibility =  "low"
+" let s:terminal_italic=1
 colorscheme solarized
 
 " Escape/unescape & < > HTML entities in range (default current line).
@@ -243,3 +272,75 @@ command! Colors call ToggleColors()
 noremap <silent> <Leader>h :Entities 0<CR>
 noremap <silent> <Leader>H :Entities 1<CR>
 
+" " https://github.com/wsdjeg/DotFiles/blob/master/config/nvim/config/neovim.vim
+" function! s:GetVisual()
+"     let [lnum1, col1] = getpos("'<")[1:2]
+"     let [lnum2, col2] = getpos("'>")[1:2]
+"     let lines = getline(lnum1, lnum2)
+"     let lines[-1] = lines[-1][:col2 - 2]
+"     let lines[0] = lines[0][col1 - 1:]
+"     return lines
+" endfunction
+"
+" function! REPLSend(lines)
+"     call jobsend(g:last_terminal_job_id, add(a:lines, ''))
+" endfunction
+" " }}}
+" " Commands {{{
+" " REPL integration {{{
+" command! -range=% REPLSendSelection call REPLSend(s:GetVisual())
+" command! REPLSendLine call REPLSend([getline('.')])
+" " }}}
+" "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" "let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" "silent! let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" "silent! let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" "silent! let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" " dark0 + gray
+" let g:terminal_color_0 = "#282828"
+" let g:terminal_color_8 = "#928374"
+"
+" " neutral_red + bright_red
+" let g:terminal_color_1 = "#cc241d"
+" let g:terminal_color_9 = "#fb4934"
+"
+" " neutral_green + bright_green
+" let g:terminal_color_2 = "#98971a"
+" let g:terminal_color_10 = "#b8bb26"
+"
+" " neutral_yellow + bright_yellow
+" let g:terminal_color_3 = "#d79921"
+" let g:terminal_color_11 = "#fabd2f"
+"
+" " neutral_blue + bright_blue
+" let g:terminal_color_4 = "#458588"
+" let g:terminal_color_12 = "#83a598"
+"
+" " neutral_purple + bright_purple
+" let g:terminal_color_5 = "#b16286"
+" let g:terminal_color_13 = "#d3869b"
+"
+" " neutral_aqua + faded_aqua
+" let g:terminal_color_6 = "#689d6a"
+" let g:terminal_color_14 = "#8ec07c"
+"
+" " light4 + light1
+" let g:terminal_color_7 = "#a89984"
+" let g:terminal_color_15 = "#ebdbb2"
+" augroup Terminal
+"     au!
+"     au TermOpen * let g:last_terminal_job_id = b:terminal_job_id | IndentLinesDisable
+"     au WinEnter term://* startinsert | IndentLinesDisable
+"     "au TermClose * exec &buftype == 'terminal' ? 'bd!' :  ''
+"     au TermClose * exe expand('<abuf>').'bd!'
+" augroup END
+
+autocmd BufEnter,WinEnter,InsertLeave * set cursorline
+autocmd BufLeave,WinLeave,InsertEnter * set nocursorline
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.  Only define it when not
+" defined already.
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+            \ | wincmd p | diffthis
+" }}}
